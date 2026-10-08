@@ -11,7 +11,7 @@ const date = new Date().toLocaleDateString("bn-BD", {
 });
 
 const Header = () => {
-    
+
 
     return (
         <header className="w-10/12 mx-auto">
