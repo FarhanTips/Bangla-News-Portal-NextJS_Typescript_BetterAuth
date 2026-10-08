@@ -15,15 +15,15 @@ const Marquee = async () => {
     const data = await res.json();
     const headLines: HeadLineType[] = data.data;
     return (
-        <div className='bg-red-700  text-white mt-4'>
+        <div className='bg-red-700  text-white mt-4 sticky top-0 z-50'>
 
-            <div className='flex w-10/12 mx-auto items-center'>
-                <p className='bg-red-800 px-4 py-1.5 text-sm font-bold'>সর্বশেষ</p>
+            <div className='flex w-11/13 mx-auto items-center'>
+                <p className='bg-red-800 px-4 py-2 text-sm font-bold'>সর্বশেষ</p>
 
                 <MarqueeText direction="right" duration={15}>
                     {
                         headLines.map(h => <span key={h.id}>
-                            <Link href="" className='py-1.5 text-sm hover:underline'>{h.title}</Link>
+                            <Link href="" className='py-2 text-sm hover:underline'>{h.title}</Link>
                             <span className='mx-5 text-red-400'>•</span>
                         </span>)
                     }
