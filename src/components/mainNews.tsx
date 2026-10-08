@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 
-interface ArticleType {
+export interface ArticleType {
     id: string;
     title: string;
     description: string;
@@ -17,8 +17,8 @@ const MainNews = async () => {
     const sections = await res.json();
     const data = sections.data[0];
     const articles: ArticleType[] = data.articles.slice(0, 5);
-    const [firstNews, ...otherNews] = articles;
-    console.log(articles);
+    const [firstNews, ...remainingNews] = articles;
+    // console.log(articles);
 
     return (
         <div className="flex gap-5 ">
@@ -54,7 +54,7 @@ const MainNews = async () => {
 
             <div className="space-y-3">
                 {
-                    otherNews.map(oNews =>
+                    remainingNews.map(oNews =>
                         <div key={oNews.id} className="card w-96 bg-base-100 card-sm shadow-sm border border-gray-300 hover:bg-gray-100">
                             <div className="card-body">
                                 <h2 className=" text-red-700 font-semibold text-sm">{oNews.category}</h2>

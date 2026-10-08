@@ -1,4 +1,5 @@
 import MainNews from "@/components/mainNews";
+import OtherNews from "@/components/otherNews";
 
 
 
@@ -8,10 +9,11 @@ export default function Home() {
 
       NavBar
 
-      <div className="grid grid-cols-3 w-10/12 mx-auto">
+      <div className="grid grid-cols-3 w-10/12 mx-auto gap-6">
         {/* news section */}
         <div className="col-span-2">
           <MainNews></MainNews>
+          <OtherNews></OtherNews>
         </div >
 
         {/* most read section */}
