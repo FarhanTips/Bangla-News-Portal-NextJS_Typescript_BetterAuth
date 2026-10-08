@@ -3,6 +3,7 @@
 import logo from "@/assets/logo.webp"
 import Image from "next/image";
 import Link from "next/link";
+import NavLinksPage from "./navLinks";
 
 
 const date = new Date().toLocaleDateString("bn-BD", {
@@ -56,6 +57,7 @@ const Header = () => {
                 </div>
 
             </div>
+            <NavLinksPage></NavLinksPage>
         </header>
     );
 };
