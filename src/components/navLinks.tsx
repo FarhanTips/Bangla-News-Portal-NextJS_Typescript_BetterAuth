@@ -8,7 +8,7 @@ interface CategoryType {
   scrapable: boolean;
 }
 
-const NavLinksPage = async () => {
+const NavLinks = async () => {
 
     const res = await fetch("https://news-api-v2.vercel.app/api/categories",{next: {revalidate: 3600,},});
     const data = await res.json();
@@ -16,7 +16,7 @@ const NavLinksPage = async () => {
     const NewCatgData = catgData.filter(catg => catg.scrapable);
 
     return (
-        <div className="flex gap-3 justify-center text-gray-600">
+        <div className="flex gap-5 justify-center text-gray-600">
             
             <Link href="/">হোম</Link>
 
@@ -27,4 +27,4 @@ const NavLinksPage = async () => {
     );
 };
 
-export default NavLinksPage;
+export default NavLinks;
