@@ -2,7 +2,7 @@ import { ArticleType } from "./mainNews";
 import NewsCard from "./newsCard";
 
 
-export interface NewsSectionType {
+interface NewsSectionType {
     title: string;
     curationId: string;
     articles: ArticleType[];
