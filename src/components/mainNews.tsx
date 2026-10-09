@@ -9,6 +9,7 @@ export interface ArticleType {
     imageAlt: string;
     category: string;
     firstPublished: string;
+    rank: number;
 }
 
 const MainNews = async () => {

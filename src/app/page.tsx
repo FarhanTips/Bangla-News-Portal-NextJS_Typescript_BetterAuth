@@ -1,4 +1,5 @@
 import MainNews from "@/components/mainNews";
+import MostRead from "@/components/mostRead";
 import OtherNews from "@/components/otherNews";
 
 
@@ -17,9 +18,10 @@ export default function Home() {
         </div >
 
         {/* most read section */}
-        <div className="col-span-1 bg-green-500 p-10">
-
+        <div className="col-span-1">
+          <MostRead></MostRead>
         </div>
+        
       </div>
     </div>
   );
