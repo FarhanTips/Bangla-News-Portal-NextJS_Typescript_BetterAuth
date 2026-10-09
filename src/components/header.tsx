@@ -4,11 +4,8 @@ import logo from "@/assets/logo.webp"
 import Image from "next/image";
 import Link from "next/link";
 import NavLinks from "./navLinks";
+import CurrentDate from "./currentDate";
 
-
-const date = new Date().toLocaleDateString("bn-BD", {
-    dateStyle: "full",
-});
 
 const Header = () => {
 
@@ -32,9 +29,7 @@ const Header = () => {
                             Bangla News 24
                         </p>
 
-                        <p className="text-[13px] text-gray-600">
-                            {date}
-                        </p>
+                        <CurrentDate></CurrentDate>
                     </div>
 
                 </div>

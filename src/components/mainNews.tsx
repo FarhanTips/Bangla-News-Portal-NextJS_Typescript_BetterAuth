@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 
 export interface ArticleType {
@@ -23,48 +24,54 @@ const MainNews = async () => {
 
     return (
         <div className="flex gap-5 ">
-            <div className="card bg-base-100 w-96 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:text-red-700">
-                <figure>
-                    <Image
-                        src={firstNews.imageUrl}
-                        alt={firstNews.imageAlt}
-                        width={600} height={600} />
-                </figure>
-                <div className="card-body">
-                    <h2 className=" text-red-700 font-semibold text-sm">{firstNews.category}</h2>
-                    <h2 className="card-title font-bold text-xl">{firstNews.title}</h2>
-                    <p className="text-justify text-gray-600">{firstNews.description}</p>
-                    <span className="text-gray-400 text-xs">
-                        {
-                            new Date(firstNews.firstPublished).toLocaleString("bn-BD", {
-                                day: "numeric",
-                                month: "long",
-                                year: "numeric",
-                                hour: "numeric",
-                                minute: "2-digit",
-                                hour12: true,
-                                timeZone: "Asia/Dhaka",
-                            })
-                        }
-                    </span>
+            <Link href={`/articleDetails/${firstNews.id}`}>
+                <div className="card bg-base-100 w-96 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:text-red-700">
+                    <figure>
+                        <Image
+                            src={firstNews.imageUrl}
+                            alt={firstNews.imageAlt}
+                            width={600} height={600} />
+                    </figure>
+                    <div className="card-body">
+                        <h2 className=" text-red-700 font-semibold text-sm">{firstNews.category}</h2>
+                        <h2 className="card-title font-bold text-xl">{firstNews.title}</h2>
+                        <p className="text-justify text-gray-600">{firstNews.description}</p>
+                        <span className="text-gray-400 text-xs">
+                            {
+                                new Date(firstNews.firstPublished).toLocaleString("bn-BD", {
+                                    day: "numeric",
+                                    month: "long",
+                                    year: "numeric",
+                                    hour: "numeric",
+                                    minute: "2-digit",
+                                    hour12: true,
+                                    timeZone: "Asia/Dhaka",
+                                })
+                            }
+                        </span>
+
+                    </div>
 
                 </div>
+            </Link>
 
-            </div>
 
-
-            <div className="space-y-3">
+            <div className="space-y-2.5">
                 {
-                    remainingNews.map(oNews =>
-                        <div key={oNews.id} className="card w-96 bg-base-100 card-sm shadow-sm border border-gray-300 hover:bg-gray-100">
-                            <div className="card-body">
-                                <h2 className=" text-red-700 font-semibold text-sm">{oNews.category}</h2>
-                                <p className="text-[16px] font-semibold">{oNews.title}</p>
+                    remainingNews.map((oNews) => (
+                        <Link key={oNews.id} href={`/articleDetails/${oNews.id}`} className="block">
+                            <div className="card w-96 card-sm border border-gray-300 bg-base-100 shadow-sm hover:bg-gray-100">
+                                <div className="card-body">
+                                    <h2 className="text-sm font-semibold text-red-700">
+                                        {oNews.category}
+                                    </h2>
+                                    <p className="text-[16px] font-semibold">
+                                        {oNews.title}
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-
-
-                    )
+                        </Link>
+                    ))
                 }
             </div>
         </div>

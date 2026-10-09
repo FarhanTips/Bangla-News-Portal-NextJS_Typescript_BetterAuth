@@ -1,4 +1,5 @@
 
+import Link from "next/link";
 import { ArticleType } from "./mainNews";
 
 const MostRead = async () => {
@@ -13,7 +14,7 @@ const MostRead = async () => {
             <p className="px-4 pt-3.5 text-lg font-bold text-red-700">সর্বাধিক পঠিত</p>
             {
                 data.map((d) => (
-                    <div key={d.id} className={`flex gap-3 px-4 py-2.5 transition-colors hover:bg-gray-50}`}>
+                    <Link href={`/articleDetails/${d.id}`} key={d.id} className={`flex gap-3 px-4 py-2.5 transition-colors hover:bg-gray-50}`}>
 
                         <span className="text-lg font-bold text-red-700">
                             {d.rank}
@@ -22,7 +23,7 @@ const MostRead = async () => {
                         <h3 className="cursor-pointer text-gray-800 transition-colors hover:text-red-700 font-bold">
                             {d.title}
                         </h3>
-                    </div>
+                    </Link>
                 ))
             }
         </div>
