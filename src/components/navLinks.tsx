@@ -21,7 +21,7 @@ const NavLinks = async () => {
             <Link href="/">হোম</Link>
 
             {
-                NewCatgData.map(catg =>  <Link key={catg.title} href={`/${catg.slug}`}>{catg.title}</Link>)
+                NewCatgData.map(catg =>  <Link key={catg.title} href={`/category/${catg.slug}`}>{catg.title}</Link>)
             }
         </div>
     );
