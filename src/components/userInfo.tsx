@@ -23,7 +23,7 @@ const UserInfo = () => {
         await authClient.signOut({
             fetchOptions: {
                 onSuccess: () => {
-                    router.push("/sign-in"); // redirect to login page
+                    router.push("/sign-in"); // redirect to login page. // Client-side event handler থেকে navigate করছি, তাই router.push ব্যবহার করেছি।
                 },
             },
         });

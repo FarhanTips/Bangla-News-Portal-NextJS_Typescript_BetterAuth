@@ -2,21 +2,39 @@
 
 "use client";
 import type { SyntheticEvent } from "react";
-import { Button, Description, FieldError, Form, Input, Label, TextField } from "@heroui/react";
+import { Button, FieldError, Form, Input, Label, TextField } from "@heroui/react";
 import Link from "next/link";
+import { authClient } from "@/lib/auth-client";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export default function SignUpPage() {
-    const onSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
+    const router = useRouter();
+
+    const onSubmit = async (e: SyntheticEvent<HTMLFormElement>) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
-        const data: Record<string, string> = {};
+        const user: Record<string, string> = {};
 
         // Convert FormData to plain object
         formData.forEach((value, key) => {
-            data[key] = value.toString();
+            user[key] = value.toString();
+        });
+        console.log("Data from form", user);
+
+        const { data, error } = await authClient.signIn.email({
+            email: user.email,
+            password: user.password,
+            // callbackURL: "/"  // Callback redirect করলে page navigation-এর কারণে toast একদম অল্প সময়ের জন্য দেখা যায়, তাই toast.success-এর পর router.push() দিয়ে redirect করছি।
         });
 
-        alert(`Form submitted with: ${JSON.stringify(data, null, 2)}`);
+        console.log("After form submission", data, error);
+        if (error) {
+            toast.error(error.message);
+            return;
+        }
+        toast.success("সাইন ইন সফল হয়েছে!");
+        router.push("/"); // Client-side event handler থেকে navigate করছি, তাই router.push ব্যবহার করেছি।
     };
 
     return (
@@ -51,23 +69,8 @@ export default function SignUpPage() {
 
                     <TextField
                         isRequired
-                        minLength={8}
                         name="password"
-                        type="password"
-                        validate={(value) => {
-                            if (value.length < 8) {
-                                return "পাসওয়ার্ড কমপক্ষে ৮ অক্ষরের হতে হবে";
-                            }
-                            if (!/[A-Z]/.test(value)) {
-                                return "পাসওয়ার্ডে অন্তত ১ টি বড় হাতের ইংরেজি অক্ষর থাকতে হবে";
-                            }
-                            if (!/[0-9]/.test(value)) {
-                                return "পাসওয়ার্ডে অন্তত ১ টি সংখ্যা থাকতে হবে";
-                            }
-
-                            return null;
-                        }}
-                    >
+                        type="password">
                         <Label>পাসওয়ার্ড</Label>
                         <Input className="border border-gray-300 rounded-sm" placeholder="পাসওয়ার্ড লিখুন" />
                         <FieldError />

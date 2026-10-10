@@ -30,11 +30,11 @@ export default function SignUpPage() {
         console.log("After form submission", data, error);
         if (error) {
             toast.error(error.message);
+            // তোমার signup form-এ onSubmit handler-এর মধ্যে toast call করেছিলে। সেটা user-এর submit event-এর response-এ চলে, component rendering-এর মধ্যে নয়। তাই সেখানে এই নির্দিষ্ট সমস্যাটি হয় না।
             return;
         }
-        toast.success("আপনার অ্যাকাউন্ট সফলভাবে তৈরি হয়েছে!");
-        redirect("/");
-        // তোমার signup form-এ onSubmit handler-এর মধ্যে toast call করেছিলে। সেটা user-এর submit event-এর response-এ চলে, component rendering-এর মধ্যে নয়। তাই সেখানে এই নির্দিষ্ট সমস্যাটি হয় না।
+        toast.success("আপনার অ্যাকাউন্ট সফলভাবে তৈরি হয়েছে! সাইন ইন করুন");
+        redirect("/sign-in"); // Client-side event handler থেকে navigate করছি, তাই router.push ব্যবহার উচিৎ। কিন্তু redirect এখানে এমনি ব্যবহার করে পরিক্ষা করছি।
     };
 
     return (
