@@ -36,7 +36,7 @@ const UserInfo = () => {
                 session?.user ?
                     <div className='flex items-center justify-end gap-3'>
                         <p className='font-semibold'>Welcome! <span className='text-red-700'>{session.user?.name}</span></p>
-                        <Button onClick={handleSignOut} className="px-3.5 py-1.5 rounded-sm bg-white text-black border hover:bg-red-700 hover:text-white">সাইন আউট</Button>
+                        <Button onClick={handleSignOut} className="px-3.5 py-1.5 rounded-sm bg-white text-black border border-gray-300 hover:bg-red-700 hover:text-white">সাইন আউট</Button>
                     </div>
                     :
                     <div className='flex items-center justify-end gap-3'>

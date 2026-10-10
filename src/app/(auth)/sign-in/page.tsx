@@ -8,7 +8,10 @@ import { authClient } from "@/lib/auth-client";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
+
+
 export default function SignUpPage() {
+
     const router = useRouter();
 
     const onSubmit = async (e: SyntheticEvent<HTMLFormElement>) => {
@@ -35,6 +38,18 @@ export default function SignUpPage() {
         }
         toast.success("সাইন ইন সফল হয়েছে!");
         router.push("/"); // Client-side event handler থেকে navigate করছি, তাই router.push ব্যবহার করেছি।
+    };
+
+    const handleGoogleSignIn = async () => {
+        const { error } = await authClient.signIn.social({
+            provider: "google",
+            callbackURL: "/",
+            // errorCallbackURL: "/sign-in",
+        });
+
+        if (error) {
+            toast.error(error.message);
+        }
     };
 
     return (
@@ -83,10 +98,17 @@ export default function SignUpPage() {
                         >
                             সাইন ইন করুন
                         </Button>
+
+
                     </div>
                 </Form>
                 <div className="mt-5 text-center text-sm text-gray-500">
                     <p>অ্যাকাউন্ট নেই? <Link href="/sign-up" className="text-red-700 hover:underline font-semibold">সাইন আপ করুন</Link></p>
+                </div>
+                
+                <div className="mt-5 text-center text-sm">
+                    <p className="text-gray-500 text-base">------------ অথবা ------------</p>
+                    <Button onClick={handleGoogleSignIn} className={"w-full border border-gray-400 p-2 rounded-md bg-white hover:bg-red-700 text-black hover:text-white mt-3"}>Google দিয়ে সাইন ইন করুন</Button>
                 </div>
 
             </div>
