@@ -4,19 +4,37 @@
 import type { SyntheticEvent } from "react";
 import { Button, Description, FieldError, Form, Input, Label, TextField } from "@heroui/react";
 import Link from "next/link";
+import { authClient } from "@/lib/auth-client";
+import { toast } from "sonner";
+import { redirect } from "next/navigation";
 
 export default function SignUpPage() {
-    const onSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
+
+    const onSubmit = async (e: SyntheticEvent<HTMLFormElement>) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
-        const data: Record<string, string> = {};
+        const user: Record<string, string> = {};
 
         // Convert FormData to plain object
         formData.forEach((value, key) => {
-            data[key] = value.toString();
+            user[key] = value.toString();
+        });
+        console.log("Data from form", user);
+
+        const { data, error } = await authClient.signUp.email({
+            name: user.name,
+            email: user.email,
+            password: user.password,
         });
 
-        alert(`Form submitted with: ${JSON.stringify(data, null, 2)}`);
+        console.log("After form submission", data, error);
+        if (error) {
+            toast.error(error.message);
+            return;
+        }
+        toast.success("আপনার অ্যাকাউন্ট সফলভাবে তৈরি হয়েছে!");
+        redirect("/");
+        // তোমার signup form-এ onSubmit handler-এর মধ্যে toast call করেছিলে। সেটা user-এর submit event-এর response-এ চলে, component rendering-এর মধ্যে নয়। তাই সেখানে এই নির্দিষ্ট সমস্যাটি হয় না।
     };
 
     return (
@@ -100,7 +118,7 @@ export default function SignUpPage() {
                     </div>
                 </Form>
                 <div className="mt-5 text-center text-sm text-gray-500">
-                    <p>অ্যাকাউন্ট আছে? <Link href="" className="text-red-700 hover:underline font-semibold">সাইন ইন করুন</Link></p>
+                    <p>অ্যাকাউন্ট আছে? <Link href="/sign-in" className="text-red-700 hover:underline font-semibold">সাইন ইন করুন</Link></p>
                 </div>
 
             </div>

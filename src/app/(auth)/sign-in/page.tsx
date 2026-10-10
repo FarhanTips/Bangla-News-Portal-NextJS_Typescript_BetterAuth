@@ -83,7 +83,7 @@ export default function SignUpPage() {
                     </div>
                 </Form>
                 <div className="mt-5 text-center text-sm text-gray-500">
-                    <p>অ্যাকাউন্ট নেই? <Link href="" className="text-red-700 hover:underline font-semibold">সাইন আপ করুন</Link></p>
+                    <p>অ্যাকাউন্ট নেই? <Link href="/sign-up" className="text-red-700 hover:underline font-semibold">সাইন আপ করুন</Link></p>
                 </div>
 
             </div>

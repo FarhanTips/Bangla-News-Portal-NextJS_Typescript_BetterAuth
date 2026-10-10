@@ -16,7 +16,7 @@ const NavLinks = async () => {
     const NewCatgData = catgData.filter(catg => catg.scrapable);
 
     return (
-        <div className="flex gap-5 justify-center text-gray-600">
+        <div className="flex gap-5 justify-center text-gray-600 mt-2">
             
             <Link href="/">হোম</Link>
 

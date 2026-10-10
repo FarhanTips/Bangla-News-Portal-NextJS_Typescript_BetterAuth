@@ -2,16 +2,17 @@
 
 import logo from "@/assets/logo.webp"
 import Image from "next/image";
-import Link from "next/link";
 import NavLinks from "./navLinks";
 import CurrentDate from "./currentDate";
+import UserInfo from "./userInfo";
+
 
 
 const Header = () => {
 
 
     return (
-        <header className="w-10/12 mx-auto">
+        <header className="w-10/12 mx-auto mt-2">
             <div className="relative flex items-center justify-between py-4">
 
                 {/* Center: Logo + Name + Date */}
@@ -35,21 +36,10 @@ const Header = () => {
                 </div>
 
                 {/* Right: Auth Buttons */}
-                <div className="ml-auto flex items-center gap-3">
-                    <Link
-                        href="/signin"
-                        className="px-4 py-2 rounded-md border border-gray-300 hover:text-red-700 border-none"
-                    >
-                        সাইন ইন
-                    </Link>
+                <UserInfo></UserInfo>
 
-                    <Link
-                        href="/signup"
-                        className="px-3.5 py-1.5 rounded-md bg-red-700 text-white"
-                    >
-                        সাইন আপ
-                    </Link>
-                </div>
+
+
 
             </div>
             <NavLinks></NavLinks>

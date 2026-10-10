@@ -3,6 +3,7 @@ import { Noto_Serif_Bengali } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header";
 import Marquee from "@/components/marquee";
+import { Toaster } from "sonner";
 
 const notoSerifBengali = Noto_Serif_Bengali({
   subsets: ["latin", "bengali"],
@@ -26,6 +27,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Header></Header>
         <Marquee></Marquee>
         {children}
+        <Toaster position="top-right" richColors />
       </body>
     </html>
   );
