@@ -1,6 +1,7 @@
 
 import { ArticleType } from "@/components/mainNews";
 import NewsCard from "@/components/newsCard";
+import { notFound } from "next/navigation";
 export const instant = false;
 
 
@@ -21,6 +22,11 @@ const CategoryNews = async ({ params }: CategoryNewsProps) => {
     const res = await fetch(`https://news-api-v2.vercel.app/api/category/${id}`, { next: { revalidate: 300 } });
     const section: SectionType = await res.json();
     const data = section.data;
+
+    if (!data){
+        notFound();
+    }
+
     return (
         <div>
 

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { notFound } from "next/navigation";
 
 export const instant = false;
 
@@ -52,13 +53,7 @@ const ArticleDetailsPage = async ({ params }: ArticleDetailsPageProps) => {
     const section = await res.json();
 
     if (!section?.success || !section?.data) {
-        return (
-            <main className="mx-auto max-w-4xl px-4 py-16 text-center">
-                <h1 className="text-2xl font-bold text-gray-900">
-                    সংবাদটি পাওয়া যায়নি
-                </h1>
-            </main>
-        );
+        notFound();
     }
 
     const data: ArticleData = section.data;
